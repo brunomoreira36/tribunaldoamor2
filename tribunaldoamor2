@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nosso Tribunal do Amor ❤️ Bruno & Marcella</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+  <style>
+    .title-font {
+      font-family: 'Pacifico', cursive;
+    }
+    body {
+      font-family: 'Roboto', sans-serif;
+      background: linear-gradient(135deg, #fce4ec, #f8bbd0);
+    }
+    .heart-animation {
+      animation: pulse 1.5s infinite;
+    }
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.1); }
+      100% { transform: scale(1); }
+    }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col items-center justify-center p-6">
+  <header class="text-center mb-8">
+    <h1 class="title-font text-4xl md:text-5xl text-pink-800 mb-2">Tribunal do Amor</h1>
+    <p class="text-lg text-pink-600">Bruno ❤️ Marcella</p>
+    <div class="heart-animation text-2xl mt-2">🥰</div>
+  </header>
+
+  <main class="bg-white rounded-2xl shadow-xl p-6 w-full max-w-2xl">
+    <section class="mb-8">
+      <h2 class="text-xl font-bold text-pink-700 mb-4">Quem tem razão hoje?</h2>
+      <p class="text-gray-600 mb-4">Preencha os motivos de cada um e nossa IA do amor vai analisar com carinho:</p>
+      
+      <div class="grid md:grid-cols-2 gap-6">
+        <div class="mb-4">
+          <label for="motivo-bruno" class="font-semibold text-gray-700 block mb-2">
+            <span class="bg-blue-100 text-blue-800 px-2 py-1 rounded">Motivo do Bruno</span>
+          </label>
+          <textarea id="motivo-bruno" rows="5" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-pink-300 focus:border-pink-400" placeholder="Desabafa aqui, amor..."></textarea>
+        </div>
+        
+        <div class="mb-4">
+          <label for="motivo-marcella" class="font-semibold text-gray-700 block mb-2">
+            <span class="bg-pink-100 text-pink-800 px-2 py-1 rounded">Motivo da Marcella</span>
+          </label>
+          <textarea id="motivo-marcella" rows="5" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-pink-300 focus:border-pink-400" placeholder="Conta tudo, querido..."></textarea>
+        </div>
+      </div>
+      
+      <div class="text-center mt-6">
+        <button onclick="analisarMotivos()" class="bg-gradient-to-r from-pink-500 to-pink-600 text-white px-8 py-3 rounded-full font-bold hover:from-pink-600 hover:to-pink-700 transition transform hover:scale-105 shadow-lg">
+          Analisar com a IA do Amor
+        </button>
+      </div>
+    </section>
+    
+    <section id="resultado-section" class="hidden">
+      <div class="p-4 rounded-lg bg-pink-50 border border-pink-200">
+        <h3 class="font-bold text-lg text-pink-800 mb-2">Resultado do Tribunal:</h3>
+        <div id="resultado" class="text-center text-lg font-semibold text-pink-700"></div>
+        <div id="emoji-resultado" class="text-center text-3xl mt-2"></div>
+      </div>
+      
+      <div class="mt-6 text-center">
+        <button onclick="resetarTribunal()" class="text-pink-600 hover:text-pink-800 font-medium">
+          ↻ Fazer novo julgamento
+        </button>
+      </div>
+    </section>
+    
+    <section class="mt-8 pt-6 border-t border-gray-200">
+      <h3 class="font-bold text-pink-700 mb-3">Histórico de Julgamentos</h3>
+      <div id="historico" class="space-y-2"></div>
+    </section>
+  </main>
+
+  <footer class="mt-8 text-center text-sm text-gray-500 max-w-2xl">
+    <p>Este site é uma brincadeira romântica criada com amor para trazer leveza aos nossos desentendimentos. ❤️</p>
+    <p class="mt-1">O importante não é quem tem razão, mas sim nosso amor e respeito mútuo.</p>
+    <p class="mt-2 text-xs">© 2023 Tribunal do Amor - Bruno & Marcella</p>
+  </footer>
+
+  <script>
+    function analisarMotivos() {
+      const motivoBruno = document.getElementById('motivo-bruno').value.trim();
+      const motivoMarcella = document.getElementById('motivo-marcella').value.trim();
+      const resultadoSection = document.getElementById('resultado-section');
+      const resultado = document.getElementById('resultado');
+      const emojiResultado = document.getElementById('emoji-resultado');
+      const historico = document.getElementById('historico');
+      
+      if (!motivoBruno || !motivoMarcella) {
+        resultadoSection.classList.remove('hidden');
+        resultado.innerText = 'Por favor, preencham os dois lados da história ❤️';
+        emojiResultado.innerText = '😊';
+        return;
+      }
+      
+      // Simulação de julgamento por IA (lógica fictícia melhorada)
+      const razaoParaBruno = motivoBruno.length > motivoMarcella.length;
+      const dataAtual = new Date().toLocaleString();
+      
+      if (razaoParaBruno) {
+        resultado.innerHTML = '🔎 <span class="text-blue-600">Veredito:</span> Hoje a razão é do <span class="font-bold text-blue-600">Bruno</span><br><span class="text-sm font-normal">(mas o amor é dos dois ❤️)</span>';
+        emojiResultado.innerText = '😎';
+        
+        // Adiciona ao histórico
+        historico.innerHTML += `
+          <div class="p-3 bg-blue-50 rounded-lg border border-blue-100">
+            <div class="flex justify-between items-start">
+              <span class="font-medium text-blue-700">Razão do Bruno</span>
+              <span class="text-xs text-gray-500">${dataAtual}</span>
+            </div>
+            <p class="text-sm mt-1 text-gray-600">${motivoBruno.substring(0, 60)}...</p>
+          </div>
+        `;
+      } else {
+        resultado.innerHTML = '🔎 <span class="text-pink-600">Veredito:</span> Hoje a razão é da <span class="font-bold text-pink-600">Marcella</span><br><span class="text-sm font-normal">(mas o amor é dos dois ❤️)</span>';
+        emojiResultado.innerText = '💁‍♀️';
+        
+        // Adiciona ao histórico
+        historico.innerHTML += `
+          <div class="p-3 bg-pink-50 rounded-lg border border-pink-100">
+            <div class="flex justify-between items-start">
+              <span class="font-medium text-pink-700">Razão da Marcella</span>
+              <span class="text-xs text-gray-500">${dataAtual}</span>
+            </div>
+            <p class="text-sm mt-1 text-gray-600">${motivoMarcella.substring(0, 60)}...</p>
+          </div>
+        `;
+      }
+      
+      resultadoSection.classList.remove('hidden');
+      
+      // Rolagem suave para o resultado
+      resultadoSection.scrollIntoView({ behavior: 'smooth' });
+    }
+    
+    function resetarTribunal() {
+      document.getElementById('motivo-bruno').value = '';
+      document.getElementById('motivo-marcella').value = '';
+      document.getElementById('resultado-section').classList.add('hidden');
+      document.getElementById('motivo-bruno').focus();
+    }
+  </script>
+</body>
+</html>
